@@ -1,12 +1,22 @@
 {
   "name": "cellural-automats",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "private": false,
+  "repository": "https://gitlab.com/volodymyrkr/cellural-automats.git",
+  "keywords": [
+    "conway's life game",
+    "cellural",
+    "automat"
+  ],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "typescript": "^3.7.3"
+  }
 }
