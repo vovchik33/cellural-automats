@@ -4,7 +4,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "private": false,
   "repository": "https://gitlab.com/volodymyrkr/cellural-automats.git",
@@ -17,6 +18,10 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
     "typescript": "^3.7.3"
-  }
+  },
+  "dependencies": {}
 }
