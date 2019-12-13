@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest --config ./jest.config.js --verbose=false",
     "coverage": "jest --coverage",
     "tsc": "tsc",
     "tslint": "tslint src/**.ts"
