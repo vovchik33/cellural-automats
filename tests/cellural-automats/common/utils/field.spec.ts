@@ -1,8 +1,8 @@
-import {createVector, VectorType} from "../../../../src/cellural-automats/common/utils/field";
+import {createField, createVector, FieldType, VectorType} from "../../../../src/cellural-automats/common/utils/field";
 
 const output = console.log;
 
-describe("Field creation", () => {
+describe("Vector creation", () => {
   const vectorLength: number = 10;
   it("Create vector of number", () => {
     const initialNumber: number = 1;
@@ -33,4 +33,58 @@ describe("Field creation", () => {
 
     expect(vector.length).toBe(0);
   });
-})
+});
+
+describe("Field creation", () => {
+  const fieldWidth: number = 3;
+  const fieldHeight: number = 2;
+
+  it("Create field of number", () => {
+    const initialValue: number = 1;
+    const field: FieldType<number> = createField(fieldWidth, fieldHeight, initialValue);
+
+    expect(field.length).toBe(fieldHeight);
+    field.forEach((value) => {
+      expect(value.length).toBe(fieldWidth);
+      expect(value.every(value => value === initialValue))
+    })
+
+  });
+
+  it("Create field of SomeType", () => {
+    type SomeType = {
+      value: number
+    }
+    const initialValue: SomeType = {value:1};
+    const field: FieldType<SomeType> = createField(fieldWidth, fieldHeight, initialValue);
+
+    console.log(field);
+    expect(field.length).toBe(fieldHeight);
+    field.forEach((row) => {
+      expect(row.length).toBe(fieldWidth);
+      expect(row.every(item => item.value === 1)).toBe(true);
+    })
+
+  });
+
+  it("Create field with empty rows", () => {
+    const rowsNumber: number = 10;
+    const initialValue: boolean = true;
+    const field: FieldType<any> = createField(0, rowsNumber, initialValue);
+
+    console.log(field);
+
+    expect(field.length).toBe(rowsNumber);
+    field.forEach(row => {
+      expect(row.length).toBe(0);
+    })
+  });
+
+  it("Create empty field", () => {
+    const field: FieldType<any> = createField(0, 0, 1);
+
+    expect(field.length).toBe(0);
+  });
+
+});
+
