@@ -1,4 +1,4 @@
-import {createField, createVector, FieldType, VectorType} from "../../../../src/cellural-automats/common/utils/field";
+import {createField, createVector, FieldType, VectorType} from "cellural-automats/common/utils/field";
 
 const output = console.log;
 
@@ -9,7 +9,7 @@ describe("Vector creation", () => {
     const vector: VectorType<number> = createVector(vectorLength, initialNumber);
 
     expect(vector.length).toBe(vectorLength);
-    expect(true).toBe(vector.every(value=>value===initialNumber));
+    expect(true).toBe(vector.every((value: number) => value === initialNumber));
   });
 
   it("Create vector of boolean", () => {
@@ -17,7 +17,7 @@ describe("Vector creation", () => {
     const vector: VectorType<boolean> = createVector(vectorLength, initialBoolean);
 
     expect(vector.length).toBe(vectorLength);
-    expect(true).toBe(vector.every(value=>value===initialBoolean));
+    expect(true).toBe(vector.every((value: boolean) => value === initialBoolean));
   });
 
   it("Create vector of string", () => {
@@ -25,7 +25,7 @@ describe("Vector creation", () => {
     const vector: VectorType<string> = createVector(vectorLength, initialString);
 
     expect(vector.length).toBe(vectorLength);
-    expect(true).toBe(vector.every(value=>value===initialString.slice()));
+    expect(true).toBe(vector.every((value: string) => value === initialString.slice()));
   });
 
   it("Create empty vector", () => {
@@ -44,9 +44,9 @@ describe("Field creation", () => {
     const field: FieldType<number> = createField(fieldWidth, fieldHeight, initialValue);
 
     expect(field.length).toBe(fieldHeight);
-    field.forEach((value) => {
+    field.forEach((value: VectorType<number>) => {
       expect(value.length).toBe(fieldWidth);
-      expect(value.every(value => value === initialValue))
+      expect(value.every((value: number) => value === initialValue))
     })
 
   });
@@ -60,9 +60,9 @@ describe("Field creation", () => {
 
     console.log(field);
     expect(field.length).toBe(fieldHeight);
-    field.forEach((row) => {
+    field.forEach((row: VectorType<SomeType>) => {
       expect(row.length).toBe(fieldWidth);
-      expect(row.every(item => item.value === 1)).toBe(true);
+      expect(row.every((item: SomeType) => item.value === 1)).toBe(true);
     })
 
   });
@@ -75,7 +75,7 @@ describe("Field creation", () => {
     console.log(field);
 
     expect(field.length).toBe(rowsNumber);
-    field.forEach(row => {
+    field.forEach((row: any) => {
       expect(row.length).toBe(0);
     })
   });
