@@ -1,7 +1,5 @@
 import {createField, createVector, FieldType, VectorType} from "cellural-automats/common/utils/field";
 
-const output = console.log;
-
 describe("Vector creation", () => {
   const vectorLength: number = 10;
   it("Create vector of number", () => {

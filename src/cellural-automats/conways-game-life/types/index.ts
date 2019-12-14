@@ -1,3 +1,5 @@
+export type ConwayGameLifeCellType = number;
+
 export enum ConwayElementType {
   //static
   BLOCK,
