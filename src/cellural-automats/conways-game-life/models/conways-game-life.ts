@@ -11,19 +11,22 @@ export const createConwaysField = (
 
 export const nextStep = (oldField: FieldType<ConwayGameLifeCellType>): FieldType<ConwayGameLifeCellType> => {
   const result: FieldType<ConwayGameLifeCellType> = createConwaysField(oldField[0].length, oldField.length, 0);
-  for(let row = 0; row<oldField.length; row++) {
-    for (let col = 0; col<oldField[row].length; col++) {
+  const rowCount:number = oldField.length;
+  const colCount:number = oldField[0].length;
+  for(let row = 0; row<rowCount; row++) {
+    for (let col = 0; col<colCount; col++) {
       let count = 0;
       for (let x=-1; x<2; x++) {
         for (let y=-1; y<2; y++) {
-          (oldField[(row+x)%row][(col+y)%col] === 1 && (x!=0) && (y!=0) && count++)
+          (oldField[(row+x+rowCount)%rowCount][(col+y+colCount)%colCount] && count++);
         }
       }
+      if (oldField[row][col]>0) count--;
       result[row][col] = (count===3 && oldField[row][col] === 0)
         ?1
         :((count===2 ||count===3) && oldField[row][col]===1
-            ?1
-            :0
+          ?1
+          :0
         );
     }
   }
