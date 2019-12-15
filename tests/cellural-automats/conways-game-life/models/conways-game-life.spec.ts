@@ -1,6 +1,7 @@
 import {createConwaysField} from 'cellural-automats/conways-game-life/models/conways-game-life';
-import {nextStep} from "../../../../src/cellural-automats/conways-game-life/models/conways-game-life";
-import {compareFields} from "../../../../src/cellural-automats/common/utils/field";
+import {nextStep, putFigure} from "cellural-automats/conways-game-life/models/conways-game-life";
+import {compareFields} from "cellural-automats/common/utils/field";
+import {ConwayElementType} from "cellural-automats/conways-game-life/types";
 
 describe("Conway's game life field creation", () => {
   it("Empty field creation", () => {
@@ -32,12 +33,12 @@ describe("Conway's game life next step", () => {
     let conwaysGameLifeField2 = nextStep(conwaysGameLifeField1);
     let conwaysGameLifeField3 = nextStep(conwaysGameLifeField2);
 
-    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField2)).toBeFalsy();
-    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField3)).toBeTruthy();
-
     console.log(conwaysGameLifeField1);
     console.log(conwaysGameLifeField2);
     console.log(conwaysGameLifeField3);
+
+    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField2)).toBeFalsy();
+    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField3)).toBeTruthy();
   });
 
   it("Block", () => {
@@ -49,9 +50,43 @@ describe("Conway's game life next step", () => {
 
     let conwaysGameLifeField2 = nextStep(conwaysGameLifeField1);
 
+    console.log(conwaysGameLifeField1);
+    console.log(conwaysGameLifeField2);
+
     expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField2)).toBeTruthy();
+  });
+});
+
+describe("Conway's game life put figure", () => {
+  it("Lighter", () => {
+    let conwaysGameLifeField1 = createConwaysField(5,5,0);
+    conwaysGameLifeField1[2][1] = 1;
+    conwaysGameLifeField1[2][2] = 1;
+    conwaysGameLifeField1[2][3] = 1;
+
+    let conwaysGameLifeField2 = createConwaysField(5,5,0);
+    putFigure(conwaysGameLifeField2, 1, 2, ConwayElementType.LIGHTER);
 
     console.log(conwaysGameLifeField1);
     console.log(conwaysGameLifeField2);
+
+    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField2)).toBeTruthy();
+  });
+
+  it("Block", () => {
+    let conwaysGameLifeField1 = createConwaysField(4,4,0);
+    conwaysGameLifeField1[1][1] = 1;
+    conwaysGameLifeField1[1][2] = 1;
+    conwaysGameLifeField1[2][1] = 1;
+    conwaysGameLifeField1[2][2] = 1;
+
+    let conwaysGameLifeField2 = createConwaysField(4,4,0);
+    putFigure(conwaysGameLifeField2, 1, 1, ConwayElementType.BLOCK);
+
+    console.log(conwaysGameLifeField1);
+    console.log(conwaysGameLifeField2);
+
+    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField2)).toBeTruthy();
   });
 })
+

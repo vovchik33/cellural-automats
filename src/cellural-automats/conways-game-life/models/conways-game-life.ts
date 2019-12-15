@@ -1,5 +1,5 @@
-import {createField, FieldType} from "../../common/utils/field";
-import {ConwayGameLifeCellType} from "../types";
+import {createField, FieldType, VectorType} from "../../common/utils/field";
+import {ConwayElementType, ConwayGameLifeCellType, mapConwayElementTypeToArray} from "../types";
 
 export const createConwaysField = (
   width: number,
@@ -31,4 +31,21 @@ export const nextStep = (oldField: FieldType<ConwayGameLifeCellType>): FieldType
     }
   }
   return result;
+}
+
+export const putFigure = (
+  field:FieldType<ConwayGameLifeCellType>,
+  x:number,
+  y:number,
+  figure:ConwayElementType
+): boolean => {
+  const figureMask: Array<Array<number>> = mapConwayElementTypeToArray(figure);
+  figureMask.forEach((row: Array<number>, rowIndex:number) => {
+    row.forEach( (item: number, colIndex:number) => {
+      if (item) {
+        field[y+rowIndex][x+colIndex] = 1;
+      }
+    })
+  })
+  return true;
 }
