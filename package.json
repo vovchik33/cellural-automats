@@ -3,11 +3,12 @@
   "version": "0.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": ["dist/**/*"],
   "scripts": {
     "test": "jest --config ./jest.config.js",
     "test-watch": "jest --config ./jest.config.js --watch",
     "coverage": "jest --coverage",
-    "tsc": "tsc",
+    "build": "tsc",
     "tslint": "tslint src/**.ts"
   },
   "private": false,
@@ -28,6 +29,6 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
-    "@types/node": "^12.12.17"
+    "@types/node": "^12.12.18"
   }
 }
