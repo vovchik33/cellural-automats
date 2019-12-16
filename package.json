@@ -11,7 +11,8 @@
     "test-watch": "jest --config ./jest.config.js --watch",
     "coverage": "jest --coverage",
     "build": "tsc",
-    "tslint": "tslint src/**.ts"
+    "tslint": "tslint src/**.ts",
+    "prepublish": "tsc"
   },
   "private": false,
   "repository": "https://gitlab.com/volodymyrkr/cellural-automats.git",
