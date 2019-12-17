@@ -1,4 +1,7 @@
-import {createField, createVector, FieldType, VectorType} from "cellural-automats/common/utils/field";
+import {
+  createField, createVector, compareVectors, compareFields, cloneVector, FieldType, VectorType
+} from 'cellural-automats/common/utils';
+import {cloneField} from "../../../../src/cellural-automats/common/utils";
 
 describe("Vector creation", () => {
   const vectorLength: number = 10;
@@ -85,4 +88,26 @@ describe("Field creation", () => {
   });
 
 });
+
+describe("Field cloning", () => {
+  it("Vector cloning", () => {
+    const vector1:VectorType<number> = createVector(10, 1);
+    const vector2:VectorType<number> = cloneVector(vector1);
+
+    console.log(vector1);
+    console.log(vector2);
+
+    expect(compareVectors(vector1, vector2)).toBeTruthy();
+  });
+
+  it("Field cloning", () => {
+    const field1:FieldType<number> = createField(5, 5, 1);
+    const field2:FieldType<number> = cloneField(field1);
+
+    console.log(field1);
+    console.log(field2);
+
+    expect(compareFields(field1, field2)).toBeTruthy();
+  });
+})
 
