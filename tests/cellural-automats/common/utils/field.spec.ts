@@ -1,6 +1,6 @@
 import {
-  createField, createVector, compareVectors, compareFields, cloneVector, cloneField, FieldType, VectorType
-} from 'cellural-automats/common/utils';
+  cloneField, cloneVector, compareFields, compareVectors, createField, createVector, FieldType, VectorType,
+} from "cellural-automats/common/utils";
 
 describe("Vector creation", () => {
   const vectorLength: number = 10;
@@ -46,24 +46,24 @@ describe("Field creation", () => {
     expect(field.length).toBe(fieldHeight);
     field.forEach((value: VectorType<number>) => {
       expect(value.length).toBe(fieldWidth);
-      expect(value.every((value: number) => value === initialValue))
-    })
+      expect(value.every((item) => item === initialValue));
+    });
 
   });
 
   it("Create field of SomeType", () => {
-    type SomeType = {
-      value: number
+    interface ISomeType {
+      value: number;
     }
-    const initialValue: SomeType = {value:1};
-    const field: FieldType<SomeType> = createField(fieldWidth, fieldHeight, initialValue);
+    const initialValue: ISomeType = {value: 1};
+    const field: FieldType<ISomeType> = createField(fieldWidth, fieldHeight, initialValue);
 
     console.log(field);
     expect(field.length).toBe(fieldHeight);
-    field.forEach((row: VectorType<SomeType>) => {
+    field.forEach((row: VectorType<ISomeType>) => {
       expect(row.length).toBe(fieldWidth);
-      expect(row.every((item: SomeType) => item.value === 1)).toBe(true);
-    })
+      expect(row.every((item: ISomeType) => item.value === 1)).toBe(true);
+    });
 
   });
 
@@ -77,7 +77,7 @@ describe("Field creation", () => {
     expect(field.length).toBe(rowsNumber);
     field.forEach((row: any) => {
       expect(row.length).toBe(0);
-    })
+    });
   });
 
   it("Create empty field", () => {
@@ -90,8 +90,8 @@ describe("Field creation", () => {
 
 describe("Field cloning", () => {
   it("Vector cloning", () => {
-    const vector1:VectorType<number> = createVector(10, 1);
-    const vector2:VectorType<number> = cloneVector(vector1);
+    const vector1: VectorType<number> = createVector(10, 1);
+    const vector2: VectorType<number> = cloneVector(vector1);
 
     console.log(vector1);
     console.log(vector2);
@@ -100,13 +100,12 @@ describe("Field cloning", () => {
   });
 
   it("Field cloning", () => {
-    const field1:FieldType<number> = createField(5, 5, 1);
-    const field2:FieldType<number> = cloneField(field1);
+    const field1: FieldType<number> = createField(5, 5, 1);
+    const field2: FieldType<number> = cloneField(field1);
 
     console.log(field1);
     console.log(field2);
 
     expect(compareFields(field1, field2)).toBeTruthy();
   });
-})
-
+});
