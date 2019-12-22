@@ -1,7 +1,6 @@
 import {
   cloneField, cloneVector, compareFields, compareVectors, createField, createVector, FieldType, VectorType,
-// @ts-ignore
-} from "cellural-automats/common/utils";
+} from "../../../../src/cellural-automats/common/utils";
 
 describe("Vector creation", () => {
   const vectorLength: number = 10;
