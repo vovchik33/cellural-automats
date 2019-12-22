@@ -12,7 +12,7 @@
     "coverage": "jest --coverage",
     "build": "tsc",
     "tslint": "tslint src/**.ts",
-    "prepare": "tsc -b ./tsconfig.prod.json"
+    "prepare": "tsc -b ./tsconfig.json"
   },
   "private": false,
   "repository": "https://gitlab.com/volodymyrkr/cellural-automats.git",
