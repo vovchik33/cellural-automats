@@ -1,5 +1,6 @@
 import {
   cloneField, cloneVector, compareFields, compareVectors, createField, createVector, FieldType, VectorType,
+// @ts-ignore
 } from "cellural-automats/common/utils";
 
 describe("Vector creation", () => {
@@ -46,7 +47,7 @@ describe("Field creation", () => {
     expect(field.length).toBe(fieldHeight);
     field.forEach((value: VectorType<number>) => {
       expect(value.length).toBe(fieldWidth);
-      expect(value.every((item) => item === initialValue));
+      expect(value.every((item: number) => item === initialValue));
     });
 
   });

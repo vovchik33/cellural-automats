@@ -1,5 +1,8 @@
+// @ts-ignore
 import {compareFields} from "cellural-automats/common/utils/field";
+// @ts-ignore
 import {createConwaysField, nextStep, putFigure} from "cellural-automats/conways-game-life/models/conways-game-life";
+// @ts-ignore
 import {ConwayElementType} from "cellural-automats/conways-game-life/types";
 
 describe("Conway's game life field creation", () => {
