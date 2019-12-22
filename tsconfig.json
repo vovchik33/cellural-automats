@@ -40,12 +40,12 @@
 
     /* Module Resolution Options */
     // "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-    "baseUrl": "./src",                       /* Base directory to resolve non-absolute module names. */
-    "paths": {
-      "cellural-automats/*": [
-        "./cellural-automats/src/cellural-automats/*"
-      ]
-    }
+    "baseUrl": "./src"                       /* Base directory to resolve non-absolute module names. */
+//    "paths": {
+//      "cellural-automats/*": [
+//        "./cellural-automats/src/cellural-automats/*"
+//      ]
+//    }
 //    "paths": {
 //      "/*": [
 //        "./dist/cellural-automats/*"
