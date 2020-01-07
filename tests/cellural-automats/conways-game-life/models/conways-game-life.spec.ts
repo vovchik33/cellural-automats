@@ -1,6 +1,6 @@
-import {compareFields} from "cellural-automats/common/utils/field";
 import {createConwaysField, nextStep, putFigure} from "cellural-automats/conways-game-life/models/conways-game-life";
 import {ConwayElementType} from "cellural-automats/conways-game-life/types";
+import {compareFields} from "cellural-automats/common/utils";
 
 describe("Conway's game life field creation", () => {
   it("Empty field creation", () => {
