@@ -6,7 +6,7 @@ export const createConwaysField = (
   height: number,
   initialValue: ConwayGameLifeCellType,
 ): FieldType<ConwayGameLifeCellType> => {
-  return createField(width, height, 0);
+  return createField(width, height, initialValue);
 };
 
 export const nextStep = (oldField: FieldType<ConwayGameLifeCellType>): FieldType<ConwayGameLifeCellType> => {
