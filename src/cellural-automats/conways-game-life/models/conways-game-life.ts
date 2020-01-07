@@ -1,4 +1,4 @@
-import {createField, FieldType} from "cellural-automats/common/utils/field";
+import {createField, FieldType, VectorType} from "../../common/utils/field";
 import {ConwayElementType, ConwayGameLifeCellType, mapConwayElementTypeToArray} from "../types";
 
 export const createConwaysField = (
@@ -34,16 +34,16 @@ export const nextStep = (oldField: FieldType<ConwayGameLifeCellType>): FieldType
 };
 
 export const putFigure = (
-  field: FieldType<ConwayGameLifeCellType>,
-  x: number,
-  y: number,
-  figure: ConwayElementType,
+  target:FieldType<ConwayGameLifeCellType>,
+  x:number,
+  y:number,
+  elementType:ConwayElementType
 ): boolean => {
-  const figureMask: number[][] = mapConwayElementTypeToArray(figure);
-  figureMask.forEach((row: number[], rowIndex: number) => {
-    row.forEach( (item: number, colIndex: number) => {
+  const figureMask: Array<Array<number>> = mapConwayElementTypeToArray(elementType);
+  figureMask.forEach((row: Array<number>, rowIndex:number) => {
+    row.forEach( (item: number, colIndex:number) => {
       if (item) {
-        field[y + rowIndex][x + colIndex] = 1;
+        target[y+rowIndex][x+colIndex] = figureMask[rowIndex][colIndex];
       }
     });
   });
