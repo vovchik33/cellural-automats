@@ -1,14 +1,20 @@
 export type VectorType<T> = T[];
-export type FieldType<T> = VectorType<VectorType<T>>;
+export type MatrixType<T> = VectorType<VectorType<T>>;
+
+export enum ConcatType {
+  AND,
+  OR,
+  XOR
+}
 
 export const createVector = <T>(length: number, initialValue: T): VectorType<T> => {
-  const vector: T[] = new Array();
+  const vector: T[] = [];
   for (let i = 0; i < length; i++) { vector.push(initialValue); }
   return vector;
 };
 
-export const createField = <T>(width: number, height: number, initialValue: T): FieldType<T> => {
-  const field: FieldType<T> = new Array();
+export const createMatrix = <T>(width: number, height: number, initialValue: T): MatrixType<T> => {
+  const field: MatrixType<T> = [];
   for (let i = 0; i < height; i++) { field.push(createVector(width, initialValue)); }
   return field;
 };
@@ -21,7 +27,7 @@ export const compareVectors = <T>(firstArray: VectorType<T>, secondArray: Vector
   return true;
 };
 
-export const compareFields = <T>(firstField: FieldType<T>, secondField: FieldType<T>): boolean => {
+export const compareMatrixes = <T>(firstField: MatrixType<T>, secondField: MatrixType<T>): boolean => {
   if (firstField.length !== secondField.length) { return false; }
   for (let i = 0; i < firstField.length; i++) {
     if (!compareVectors(firstField[i], secondField[i])) { return false; }
@@ -30,7 +36,7 @@ export const compareFields = <T>(firstField: FieldType<T>, secondField: FieldTyp
 };
 
 export const cloneVector = <T>(source: VectorType<T>, length?: number, initialValue?: T): VectorType<T> => {
-  const result: VectorType<T> = new Array();
+  const result: VectorType<T> = [];
   source.forEach((value) => {result.push(value); });
   if (length && initialValue !== undefined && length > source.length) {
     for (let i = source.length; i < length; i++) {
@@ -40,10 +46,10 @@ export const cloneVector = <T>(source: VectorType<T>, length?: number, initialVa
   return result;
 };
 
-export const cloneField = <T>(
-    source: FieldType<T>, width?: number, height?: number, initialValue?: T,
-): FieldType<T> => {
-  const result: FieldType<T> = new Array();
+export const cloneMatrix = <T>(
+  source: MatrixType<T>, width?: number, height?: number, initialValue?: T,
+): MatrixType<T> => {
+  const result: MatrixType<T> = new Array();
   source.forEach((value: VectorType<T>) => {result.push(cloneVector(value, width, initialValue)); });
   if (height && width && initialValue !== undefined && height > source.length) {
     for (let i = source.length; i < height; i++) {
@@ -52,3 +58,23 @@ export const cloneField = <T>(
   }
   return result;
 };
+
+export const concatVector = <T>(
+  target: VectorType<T>,
+  source: VectorType<T>,
+  startPos: number = 0,
+  concatType: ConcatType = ConcatType.AND
+): VectorType<T> => {
+  const result: VectorType<T> = target.slice();
+  for (let i = 0; i < source.length; i++) {
+    switch (concatType) {
+      case ConcatType.XOR:
+      case ConcatType.OR:
+      case ConcatType.AND:
+      default:
+        result[(i + startPos) % target.length] = source[i];
+        break;
+    }
+  }
+  return result;
+}

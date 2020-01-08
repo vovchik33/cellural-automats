@@ -1,6 +1,6 @@
 import {createConwaysField, nextStep, putFigure} from "cellural-automats/conways-game-life/models/conways-game-life";
 import {ConwayElementType} from "cellural-automats/conways-game-life/types";
-import {compareFields} from "cellural-automats/common/utils";
+import {compareMatrixes} from "cellural-automats/common/utils";
 
 describe("Conway's game life field creation", () => {
   it("Empty field creation", () => {
@@ -36,8 +36,8 @@ describe("Conway's game life next step", () => {
     console.log(conwaysGameLifeField2);
     console.log(conwaysGameLifeField3);
 
-    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField2)).toBeFalsy();
-    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField3)).toBeTruthy();
+    expect(compareMatrixes(conwaysGameLifeField1, conwaysGameLifeField2)).toBeFalsy();
+    expect(compareMatrixes(conwaysGameLifeField1, conwaysGameLifeField3)).toBeTruthy();
   });
 
   it("Block", () => {
@@ -52,7 +52,7 @@ describe("Conway's game life next step", () => {
     console.log(conwaysGameLifeField1);
     console.log(conwaysGameLifeField2);
 
-    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField2)).toBeTruthy();
+    expect(compareMatrixes(conwaysGameLifeField1, conwaysGameLifeField2)).toBeTruthy();
   });
 });
 
@@ -69,7 +69,7 @@ describe("Conway's game life put figure", () => {
     console.log(conwaysGameLifeField1);
     console.log(conwaysGameLifeField2);
 
-    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField2)).toBeTruthy();
+    expect(compareMatrixes(conwaysGameLifeField1, conwaysGameLifeField2)).toBeTruthy();
   });
 
   it("Block", () => {
@@ -85,6 +85,6 @@ describe("Conway's game life put figure", () => {
     console.log(conwaysGameLifeField1);
     console.log(conwaysGameLifeField2);
 
-    expect(compareFields(conwaysGameLifeField1, conwaysGameLifeField2)).toBeTruthy();
+    expect(compareMatrixes(conwaysGameLifeField1, conwaysGameLifeField2)).toBeTruthy();
   });
 });

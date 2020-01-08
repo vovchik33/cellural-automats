@@ -1,5 +1,13 @@
 import {
-  cloneField, cloneVector, compareFields, compareVectors, createField, createVector, FieldType, VectorType,
+  cloneMatrix,
+  cloneVector,
+  compareMatrixes,
+  compareVectors,
+  createMatrix,
+  createVector,
+  concatVector,
+  MatrixType,
+  VectorType,
 } from "cellural-automats/common/utils";
 
 describe("Vector creation", () => {
@@ -41,7 +49,7 @@ describe("Field creation", () => {
 
   it("Create field of number", () => {
     const initialValue: number = 1;
-    const field: FieldType<number> = createField(fieldWidth, fieldHeight, initialValue);
+    const field: MatrixType<number> = createMatrix(fieldWidth, fieldHeight, initialValue);
 
     expect(field.length).toBe(fieldHeight);
     field.forEach((value: VectorType<number>) => {
@@ -56,7 +64,7 @@ describe("Field creation", () => {
       value: number;
     }
     const initialValue: ISomeType = {value: 1};
-    const field: FieldType<ISomeType> = createField(fieldWidth, fieldHeight, initialValue);
+    const field: MatrixType<ISomeType> = createMatrix(fieldWidth, fieldHeight, initialValue);
 
     console.log(field);
     expect(field.length).toBe(fieldHeight);
@@ -70,7 +78,7 @@ describe("Field creation", () => {
   it("Create field with empty rows", () => {
     const rowsNumber: number = 10;
     const initialValue: boolean = true;
-    const field: FieldType<any> = createField(0, rowsNumber, initialValue);
+    const field: MatrixType<any> = createMatrix(0, rowsNumber, initialValue);
 
     console.log(field);
 
@@ -81,7 +89,7 @@ describe("Field creation", () => {
   });
 
   it("Create empty field", () => {
-    const field: FieldType<any> = createField(0, 0, 1);
+    const field: MatrixType<any> = createMatrix(0, 0, 1);
 
     expect(field.length).toBe(0);
   });
@@ -100,12 +108,39 @@ describe("Field cloning", () => {
   });
 
   it("Field cloning", () => {
-    const field1: FieldType<number> = createField(5, 5, 1);
-    const field2: FieldType<number> = cloneField(field1);
+    const field1: MatrixType<number> = createMatrix(5, 5, 1);
+    const field2: MatrixType<number> = cloneMatrix(field1);
 
     console.log(field1);
     console.log(field2);
 
-    expect(compareFields(field1, field2)).toBeTruthy();
+    expect(compareMatrixes(field1, field2)).toBeTruthy();
   });
+});
+
+describe("Field concat", () => {
+  it("Vector concating", () => {
+    const vector1: VectorType<number> = createVector(10, 1);
+    const vector2: VectorType<number> = createVector(5, 2);
+    const vector3: VectorType<number> = concatVector(vector1, vector2, 5);
+    const vector4: VectorType<number> = [1,1,1,1,1,2,2,2,2,2];
+
+    console.log(vector1);
+    console.log(vector2);
+    console.log(vector3);
+    console.log(vector4);
+
+    expect(vector3.length).toBe(10);
+    expect(compareVectors(vector3, vector4)).toBeTruthy();
+  });
+
+  // it("Field concating", () => {
+  //   const field1: MatrixType<number> = createField(5, 5, 1);
+  //   const field2: MatrixType<number> = cloneMatrix(field1);
+  //
+  //   console.log(field1);
+  //   console.log(field2);
+  //
+  //   expect(compareMatrixes(field1, field2)).toBeTruthy();
+  // });
 });

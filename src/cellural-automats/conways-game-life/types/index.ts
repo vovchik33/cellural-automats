@@ -1,4 +1,4 @@
-import {FieldType} from "cellural-automats/common/utils/field";
+import {MatrixType} from "cellural-automats/common/utils/matrix";
 
 export type ConwayGameLifeCellType = number;
 
@@ -10,7 +10,7 @@ export enum ConwayElementType {
   LIGHTER,
 }
 
-export const mapConwayElementTypeToArray = (type: ConwayElementType): FieldType<number> => {
+export const mapConwayElementTypeToArray = (type: ConwayElementType): MatrixType<number> => {
   switch (type) {
     case ConwayElementType.BLOCK:
       return [

@@ -1,16 +1,16 @@
-import {createField, FieldType, VectorType} from "../../common/utils/field";
+import {createMatrix, MatrixType} from "../../common/utils/matrix";
 import {ConwayElementType, ConwayGameLifeCellType, mapConwayElementTypeToArray} from "../types";
 
 export const createConwaysField = (
   width: number,
   height: number,
   initialValue: ConwayGameLifeCellType,
-): FieldType<ConwayGameLifeCellType> => {
-  return createField(width, height, initialValue);
+): MatrixType<ConwayGameLifeCellType> => {
+  return createMatrix(width, height, initialValue);
 };
 
-export const nextStep = (oldField: FieldType<ConwayGameLifeCellType>): FieldType<ConwayGameLifeCellType> => {
-  const result: FieldType<ConwayGameLifeCellType> = createConwaysField(oldField[0].length, oldField.length, 0);
+export const nextStep = (oldField: MatrixType<ConwayGameLifeCellType>): MatrixType<ConwayGameLifeCellType> => {
+  const result: MatrixType<ConwayGameLifeCellType> = createConwaysField(oldField[0].length, oldField.length, 0);
   const rowCount: number = oldField.length;
   const colCount: number = oldField[0].length;
   for (let row = 0; row < rowCount; row++) {
@@ -34,7 +34,7 @@ export const nextStep = (oldField: FieldType<ConwayGameLifeCellType>): FieldType
 };
 
 export const putFigure = (
-  target:FieldType<ConwayGameLifeCellType>,
+  target:MatrixType<ConwayGameLifeCellType>,
   x:number,
   y:number,
   elementType:ConwayElementType
